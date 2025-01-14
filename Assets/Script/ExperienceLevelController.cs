@@ -36,7 +36,7 @@ public class ExperienceLevelController : MonoBehaviour
         {
             LevelUp();
         }
-        UiController.instance.getExp(1);
+        UiController.instance.UpdateExperience(currentExperience,expLevels[currentLevel],currentLevel);
 
     }
     public void SpawnExp(Vector3 position, int expToGive)
@@ -56,6 +56,7 @@ public class ExperienceLevelController : MonoBehaviour
         {
             currentLevel = expLevels.Count - 1;
         }
+        PlayerController.instance.activeWeapon.LevelUp();
 
     }
 }

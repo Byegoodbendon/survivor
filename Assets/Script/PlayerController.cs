@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+    private void Awake() {
+        instance = this;
+    }
     public float speed;
     public Animator anim;
+    public Weapon activeWeapon;
     
     void Start()
     {

@@ -25,7 +25,7 @@ public class UiController : MonoBehaviour
     {
         
     }
-    public void getExp(int exp)
+    /*public void getExp(int exp)
     {
         expSlider.value += 1 ;
         if(expSlider.value >= expSlider.maxValue)
@@ -38,5 +38,12 @@ public class UiController : MonoBehaviour
     public void LevelUp()
     {
         expSlider.maxValue = ExperienceLevelController.instance.expLevels[ExperienceLevelController.instance.currentLevel];
+    }*/
+    public void UpdateExperience(int currentExp, int levelExp, int currentLevel)
+    {
+        expSlider.value = currentExp;
+        expSlider.maxValue = levelExp;
+        LvlText.text = "Level " + currentLevel;
+
     }
 }
