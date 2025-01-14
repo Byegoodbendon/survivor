@@ -9,6 +9,8 @@ public class ExpPickup : MonoBehaviour
     public float moveSpeed;
     private bool rangeActive;
     public GameObject pickRange;
+    private float moveCount = 0.4f;
+    
     
     void Start()
     {
@@ -21,7 +23,13 @@ public class ExpPickup : MonoBehaviour
     {
         if(PickRange.move == true && pickRange.activeSelf ==false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, PlayerHealthController.instance.transform.position, moveSpeed * Time.deltaTime);
+            moveCount -= Time.deltaTime;
+            if(moveCount <= 0)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, PlayerHealthController.instance.transform.position, moveSpeed * Time.deltaTime);
+                
+            }
+            
         }
 
         

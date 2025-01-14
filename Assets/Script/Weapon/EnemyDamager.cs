@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyDamager : MonoBehaviour
 {
     public float damageAmount;
-    private float damageCount;
+    private float damageTime;
     public float maxCount;
     private float recoverTime;
     private Vector3 targetSize;
@@ -23,11 +23,11 @@ public class EnemyDamager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(damageCount < maxCount)
+        if(damageTime < maxCount)
         {   
             transform.localScale = Vector3.MoveTowards(transform.localScale, targetSize, growSpeed * Time.deltaTime);
         }
-        else if(damageCount >= maxCount)
+        else if(damageTime >= maxCount)
         {
             
             
@@ -35,21 +35,19 @@ public class EnemyDamager : MonoBehaviour
         
             if(transform.localScale.x == 0)
             {
-                damageCount = 0;
+                damageTime = 0;
                 gameObject.SetActive(false);
 
             }
-
-           
-
         }
+        damageTime += Time.deltaTime;
+        
         
     }
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Enemy")
         {
             other.GetComponent<EnemyController>().TakeDamage(damageAmount,knockBack);
-            damageCount += 1;
         }
     }
 }

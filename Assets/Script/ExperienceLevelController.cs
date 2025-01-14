@@ -7,6 +7,9 @@ public class ExperienceLevelController : MonoBehaviour
 {
     public static ExperienceLevelController instance;
     public GameObject exp;
+    public List<int> expLevels;
+    public int currentLevel = 1;
+    public int levelCount = 100;
     private void Awake() 
     {
         instance = this;   
@@ -14,8 +17,11 @@ public class ExperienceLevelController : MonoBehaviour
     public int currentExperience;
     void Start()
     {
-        
-        
+       while(expLevels.Count < levelCount)
+        {
+            expLevels.Add(Mathf.CeilToInt(expLevels[expLevels.Count - 1] * 1.1f));
+        }
+      
     }
 
     // Update is called once per frame
@@ -26,6 +32,11 @@ public class ExperienceLevelController : MonoBehaviour
     public void getExp(int amountToGet)
     {
         currentExperience += amountToGet;
+        if(currentExperience >= expLevels[currentLevel])
+        {
+            LevelUp();
+        }
+        UiController.instance.getExp(1);
 
     }
     public void SpawnExp(Vector3 position, int expToGive)
@@ -35,5 +46,16 @@ public class ExperienceLevelController : MonoBehaviour
         Instantiate(exp, position, quaternion.identity);
        }
         
+    }
+    void LevelUp()
+    {
+        
+        currentExperience -= expLevels[currentLevel]; 
+        currentLevel += 1;
+        if(currentLevel >= expLevels.Count)
+        {
+            currentLevel = expLevels.Count - 1;
+        }
+
     }
 }
