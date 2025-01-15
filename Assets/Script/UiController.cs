@@ -14,9 +14,13 @@ public class UiController : MonoBehaviour
     public Slider expSlider;
     public TMP_Text LvlText;
     private float maxExp;
+    public LevelUpSelectionBotton[] levelUpBottons;
+    public GameObject levelUpPanel;
     void Start()
     {
         expSlider.value = 0.0f;
+        
+        
         
     }
 
@@ -25,20 +29,7 @@ public class UiController : MonoBehaviour
     {
         
     }
-    /*public void getExp(int exp)
-    {
-        expSlider.value += 1 ;
-        if(expSlider.value >= expSlider.maxValue)
-        {
-            expSlider.value -= expSlider.maxValue;
-            LevelUp();
-        }
-
-    }
-    public void LevelUp()
-    {
-        expSlider.maxValue = ExperienceLevelController.instance.expLevels[ExperienceLevelController.instance.currentLevel];
-    }*/
+    
     public void UpdateExperience(int currentExp, int levelExp, int currentLevel)
     {
         expSlider.value = currentExp;

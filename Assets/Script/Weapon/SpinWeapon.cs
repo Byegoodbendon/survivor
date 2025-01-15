@@ -16,6 +16,7 @@ public class SpinWeapon : Weapon
     void Start()
     {
         SetState();
+        //UiController.instance.levelUpBottons[0].UpdateBottonDisplay(this);
         
     }
 
