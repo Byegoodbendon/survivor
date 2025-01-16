@@ -11,10 +11,14 @@ public class PlayerController : MonoBehaviour
     }
     public float speed;
     public Animator anim;
-    public Weapon activeWeapon;
-    
+    //public Weapon activeWeapon;
+    public List<Weapon> unassignedWeapons, assignedWeapons;
+    public int maxWeapons = 3;
+    [HideInInspector]
+    public List<Weapon> fullyLevelledWeapons = new List<Weapon>();
     void Start()
     {
+        AddWeapon(Random.Range(0,unassignedWeapons.Count));
 
     }
 
@@ -62,6 +66,32 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    public void AddWeapon(int weaponNumber)
+    {
+        if(weaponNumber < unassignedWeapons.Count)
+        {
+            assignedWeapons.Add(unassignedWeapons[weaponNumber]);
+            unassignedWeapons[weaponNumber].gameObject.SetActive(true);
+            unassignedWeapons.RemoveAt(weaponNumber);
+        }
+
+    }
+    public void AddWeapon(Weapon weaponTaked)
+    {
+        weaponTaked.gameObject.SetActive(true);
+        assignedWeapons.Add(weaponTaked);
+        unassignedWeapons.Remove(weaponTaked);
+
+    }
+    /*public void checkLevelMaxWeapon(Weapon usingWeapon)
+    {
+        if(usingWeapon.weaponLevel >= usingWeapon.state.Count-1)
+        {
+            fullyLevelledWeapons.Add(usingWeapon);
+            assignedWeapons.Remove(usingWeapon);
+        }
+    }*/
+
 }
     
    

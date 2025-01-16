@@ -16,6 +16,11 @@ public class Weapon : MonoBehaviour
         {
             weaponLevel +=1;
             stateUpdated = true;
+            if(weaponLevel >= state.Count-1)
+            {
+                PlayerController.instance.fullyLevelledWeapons.Add(this);
+                PlayerController.instance.assignedWeapons.Remove(this);
+            }
         }
     }
 }
