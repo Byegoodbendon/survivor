@@ -51,11 +51,11 @@ TagManager:
   - name: Pickups
     uniqueID: 3471474833
     locked: 0
-  - name: Weapon
-    uniqueID: 2819917213
-    locked: 0
   - name: Player
     uniqueID: 3142463703
+    locked: 0
+  - name: Weapon
+    uniqueID: 2819917213
     locked: 0
   - name: UI
     uniqueID: 561979999

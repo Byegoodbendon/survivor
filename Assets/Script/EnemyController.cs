@@ -79,6 +79,7 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject);
         ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
        }
+       DamageNumberController.instance.SpawnDamage(damage, transform.position);
 
     }
     public void TakeDamage(float damage,bool knockBack)
