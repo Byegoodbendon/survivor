@@ -75,8 +75,10 @@ public class EnemyDamager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if(damageOverTime == false)
         {
+            
             if(other.tag == "Enemy")
             {
+                
                 other.GetComponent<EnemyController>().TakeDamage(damageAmount,knockBack);
                 if(destroyOnImpact == true)
                 {

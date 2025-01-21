@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3867655294319139268}
   - component: {fileID: 3637590553529394940}
   - component: {fileID: 4452964906320033465}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -103,7 +103,6 @@ MonoBehaviour:
   enemyRB: {fileID: 3637590553529394940}
   eneyAnim: {fileID: 3867655294319139268}
   moveSpeed: 1
-  heartCount: 0
   health: 15
   knockBackTime: 0.3
   expToGive: 3

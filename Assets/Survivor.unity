@@ -16225,7 +16225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &740570997
 Transform:
   m_ObjectHideFlags: 0
@@ -16235,7 +16235,7 @@ Transform:
   m_GameObject: {fileID: 740570996}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 10}
+  m_LocalPosition: {x: 1, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16312,14 +16312,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a5a66fd917b3c44be90cb8c128c7f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 0
+  damageAmount: 1
   damageTime: 0
   maxCount: 10
   growSpeed: 10
   knockBack: 0
   damageOverTime: 0
   destroyOnImpact: 1
-  timeBetweenDamage: 0
+  timeBetweenDamage: 1.5
   timeCounter: 0
   spinHolder: {fileID: 0}
 --- !u!1 &769851915
@@ -16468,7 +16468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &873287821
 Transform:
   m_ObjectHideFlags: 0
@@ -16956,8 +16956,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 4.5, y: 0.19999981}
-  m_SizeDelta: {x: 98, y: 100}
+  m_AnchoredPosition: {x: 12, y: 0.6}
+  m_SizeDelta: {x: 31, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &937466877
 MonoBehaviour:
@@ -17498,7 +17498,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1061170134
 Transform:
   m_ObjectHideFlags: 0
@@ -18235,7 +18235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3.1, y: -1.2}
+  m_AnchoredPosition: {x: 0, y: -3}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1249933876
@@ -18322,15 +18322,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponLevel: 0
-  state: []
+  state:
+  - speed: 7
+    damage: 3
+    range: 1
+    timeBetweenAttacks: 1.5
+    amount: 2
+    duration: 2
+    upgradeText: damage+2
+  - speed: 7
+    damage: 5
+    range: 1
+    timeBetweenAttacks: 1.5
+    amount: 2
+    duration: 2
+    upgradeText: target+1
+  - speed: 7
+    damage: 5
+    range: 1
+    timeBetweenAttacks: 0.5
+    amount: 3
+    duration: 2
+    upgradeText: frequency up
+  - speed: 10
+    damage: 5
+    range: 5
+    timeBetweenAttacks: 0.5
+    amount: 3
+    duration: 2
+    upgradeText: speed up
+  - speed: 10
+    damage: 5
+    range: 5
+    timeBetweenAttacks: 0.5
+    amount: 3
+    duration: 2
+    upgradeText: max
   stateUpdated: 0
-  icon: {fileID: 0}
-  damager: {fileID: 0}
-  projectile: {fileID: 0}
-  weaponRange: 0
+  icon: {fileID: 21300000, guid: 583eed4fd32a76e4ba62323324da6823, type: 3}
+  damager: {fileID: 740571000}
+  projectile: {fileID: 740570998}
+  weaponRange: 5
   whatIsEnemy:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
 --- !u!1 &1368629924
 GameObject:
   m_ObjectHideFlags: 0
@@ -18770,8 +18805,8 @@ MonoBehaviour:
   speed: 5
   anim: {fileID: 1500007394}
   unassignedWeapons:
-  - {fileID: 1218644614}
   - {fileID: 873287822}
+  - {fileID: 1218644614}
   assignedWeapons:
   - {fileID: 1336221164}
   maxWeapons: 3
@@ -20555,10 +20590,10 @@ RectTransform:
   - {fileID: 937466876}
   m_Father: {fileID: 2121803489}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.21100001, y: 0.18534356}
-  m_AnchorMax: {x: 0.845, y: 0.75}
-  m_AnchoredPosition: {x: -2.2, y: 1}
-  m_SizeDelta: {x: 32, y: -1}
+  m_AnchorMin: {x: 0.1, y: 0.06666667}
+  m_AnchorMax: {x: 0.91, y: 0.70000005}
+  m_AnchoredPosition: {x: -0.5, y: 2}
+  m_SizeDelta: {x: -1, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2121803487
 GameObject:
@@ -20624,7 +20659,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -20644,10 +20679,10 @@ RectTransform:
   - {fileID: 2049548763}
   m_Father: {fileID: 1633748973}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.48947918, y: 0.47900003}
-  m_AnchorMax: {x: 0.5182188, y: 0.5}
-  m_AnchoredPosition: {x: -14.099998, y: -99.8}
-  m_SizeDelta: {x: 28.987305, y: -29.61377}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
