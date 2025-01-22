@@ -11,6 +11,8 @@ public class PlayerHealthController : MonoBehaviour
     public static PlayerHealthController instance;
     public float currentHealth, maxHealth;
     public Slider healthSlider;
+    public Gradient gradient;
+    public Image fill;
     
     private void Awake() 
     {
@@ -19,8 +21,10 @@ public class PlayerHealthController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        healthSlider.maxValue = maxHealth;
         
         healthSlider.value = currentHealth;
+        //fill.color = gradient.Evaluate(1f);
     }
 
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class PlayerHealthController : MonoBehaviour
     {
         currentHealth -= damage;
         healthSlider.value = currentHealth;
+        //fill.color = gradient.Evaluate(healthSlider.normalizedValue);
         
         if(currentHealth <= 0)
         {

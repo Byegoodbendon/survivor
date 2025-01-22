@@ -22,6 +22,7 @@ public class EnemyDamager : MonoBehaviour
     void Start()
     {
         targetSize = transform.localScale;
+        //targetSize = new Vector3(1,1,1);
        // targetSize = transform.parent.GetComponent<Weapon>().state[weaponlevel].range * transform.localScale;
         transform.localScale = Vector3.zero;
         damageTime = 0f;

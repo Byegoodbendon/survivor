@@ -11,6 +11,7 @@ public class ZoneWeapon : Weapon
     void Start()
     {
         SetState();
+        zoneWeapon.SetActive(true);
         
     }
 

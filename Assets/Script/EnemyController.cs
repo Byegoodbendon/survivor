@@ -27,37 +27,43 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(knockBackCount >0)
+        if(PlayerController.instance.gameObject.activeSelf == true)
         {
-            knockBackCount -= Time.deltaTime;
-            eneyAnim.SetBool("hurt",true);
-            if(moveSpeed > 0)
+            if(knockBackCount >0)
             {
+                knockBackCount -= Time.deltaTime;
+                eneyAnim.SetBool("hurt",true);
+                if(moveSpeed > 0)
+                {
                 
-                moveSpeed = -moveSpeed;
+                    moveSpeed = -moveSpeed;
+                }
+                if(knockBackCount <= 0)
+                {
+                    moveSpeed = Mathf.Abs(moveSpeed);
+                    eneyAnim.SetBool("hurt",false);
+                }
+
             }
-            if(knockBackCount <= 0)
+            
+
+
+            enemyRB.velocity = (target.position-transform.position).normalized * moveSpeed;
+            if(target.position.x <= transform.position.x)
             {
-                moveSpeed = Mathf.Abs(moveSpeed);
-                eneyAnim.SetBool("hurt",false);
+                transform.localScale = new Vector3(-1,1,1);
+            }else
+            {
+                transform.localScale = new Vector3(1,1,1);
             }
-
+            if (heartCount >= 0f)
+            {
+                heartCount -= Time.deltaTime;
+            }
+        }else
+        {
+            enemyRB.velocity = Vector2.zero;
         }
-        
-
-
-       enemyRB.velocity = (target.position-transform.position).normalized * moveSpeed;
-       if(target.position.x <= transform.position.x)
-       {
-        transform.localScale = new Vector3(-1,1,1);
-       }else
-       {
-        transform.localScale = new Vector3(1,1,1);
-       }
-       if (heartCount >= 0f)
-       {
-        heartCount -= Time.deltaTime;
-       }
        
         
     }
