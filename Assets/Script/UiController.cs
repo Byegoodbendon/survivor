@@ -13,20 +13,14 @@ public class UiController : MonoBehaviour
 
     public Slider expSlider;
     public TMP_Text LvlText;
+    public TMP_Text coinText;
     private float maxExp;
     public LevelUpSelectionBotton[] levelUpBottons;
     public GameObject levelUpPanel;
+    public PlayerStatUpgradeDisplay moveSpeedUpgradeDisplay, healthUpgradeDisplay, pickupRangeUpgradeDisplay, maxWeaponsUpgradeDisplay;
     void Start()
     {
         expSlider.value = 0.0f;
-        
-        
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
     
@@ -35,6 +29,11 @@ public class UiController : MonoBehaviour
         expSlider.value = currentExp;
         expSlider.maxValue = levelExp;
         LvlText.text = "Level " + currentLevel;
+
+    }
+    public void UpdateCoin()
+    {
+        coinText.text = CoinController.instance.currentCoins.ToString();
 
     }
 }
