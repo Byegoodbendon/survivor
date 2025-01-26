@@ -6,7 +6,7 @@ public class CoinPickup : MonoBehaviour
 {
     public int coinAmount;
     public float moveSpeed;
-    private bool rangeActive;
+   
     public GameObject pickRange;
     
     private bool canMove;

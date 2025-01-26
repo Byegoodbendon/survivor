@@ -31,9 +31,38 @@ public class UiController : MonoBehaviour
         LvlText.text = "Level " + currentLevel;
 
     }
+    public void SkipLevelUp()
+    {
+        levelUpPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
     public void UpdateCoin()
     {
         coinText.text = CoinController.instance.currentCoins.ToString();
 
+    }
+    public void PurchaseMoveSpeed()
+    {
+        PlayerStatController.instance.PurchaseMoveSpeed();
+        SkipLevelUp();
+
+    }
+    public void PurchaseHealth()
+    {
+        PlayerStatController.instance.PurchaseHealth();
+        SkipLevelUp();
+        
+    }
+    public void PurchasePickupRange()
+    {
+        PlayerStatController.instance.PurchasePickupRange();
+        SkipLevelUp();
+        
+    }
+    public void PurchaseMaxWeapons()
+    {
+        PlayerStatController.instance.PurchaseMaxWeapons();
+        SkipLevelUp();
+        
     }
 }

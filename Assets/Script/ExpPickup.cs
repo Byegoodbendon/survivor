@@ -7,28 +7,27 @@ public class ExpPickup : MonoBehaviour
 {
     public int expAmount;
     public float moveSpeed;
-    private bool rangeActive;
+    
     public GameObject pickRange;
-    private float moveCount = 0.4f;
+    
+    private bool canMove;
     
     
     void Start()
     {
-        
+        StartCoroutine(DelayMove());
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(PickRange.move == true && pickRange.activeSelf ==false)
+        if(canMove && pickRange.activeSelf ==false)
         {
-            moveCount -= Time.deltaTime;
-            if(moveCount <= 0)
-            {
+            
+            
                 transform.position = Vector3.MoveTowards(transform.position, PlayerHealthController.instance.transform.position, moveSpeed * Time.deltaTime);
-                
-            }
+            
             
         }
 
@@ -42,5 +41,10 @@ public class ExpPickup : MonoBehaviour
             Destroy(gameObject);
         }
         
+    }
+    private IEnumerator DelayMove()
+    {
+        yield return new WaitForSeconds(1f); // 等待 1 秒
+        canMove = true; // 允許移動
     }
 }

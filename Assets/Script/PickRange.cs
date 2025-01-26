@@ -22,7 +22,7 @@ public class PickRange : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other) 
     {
-        if(other.tag == "Player")
+        if(other.tag == "playerpickup")
         {
             move = true;
             gameObject.SetActive(false);

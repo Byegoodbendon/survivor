@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
     }
     public float speed;
+    public CircleCollider2D pickupRange;
     public Animator anim;
     //public Weapon activeWeapon;
     public List<Weapon> unassignedWeapons, assignedWeapons;
