@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,8 +12,9 @@ public class PlayerHealthController : MonoBehaviour
     public static PlayerHealthController instance;
     public float currentHealth, maxHealth;
     public Slider healthSlider;
-    public Gradient gradient;
-    public Image fill;
+    //public Gradient gradient;
+    
+    public GameObject playerDeathEffect;
     
     private void Awake() 
     {
@@ -20,6 +22,7 @@ public class PlayerHealthController : MonoBehaviour
     }
     void Start()
     {
+        maxHealth = PlayerStatController.instance.health[0].value;
         currentHealth = maxHealth;
         healthSlider.maxValue = maxHealth;
         
@@ -42,6 +45,8 @@ public class PlayerHealthController : MonoBehaviour
         if(currentHealth <= 0)
         {
             gameObject.SetActive(false);
+            LevelManager.instance.EndLevel();
+            Instantiate(playerDeathEffect,transform.position,transform.rotation);
         }
     }
 }
