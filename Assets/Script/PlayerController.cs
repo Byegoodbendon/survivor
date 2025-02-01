@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine.Utility;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -11,14 +12,20 @@ public class PlayerController : MonoBehaviour
     }
     public float speed;
     public CircleCollider2D pickupRange;
+    public bool rightCollider,leftCollider,topCollider,bottomCollider;
+    
+
     public Animator anim;
     //public Weapon activeWeapon;
     public List<Weapon> unassignedWeapons, assignedWeapons;
     public int maxWeapons = 3;
+    
+    private Rigidbody2D rb;
     [HideInInspector]
     public List<Weapon> fullyLevelledWeapons = new List<Weapon>();
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         if(assignedWeapons.Count == 0)
         {
             AddWeapon(Random.Range(0,unassignedWeapons.Count));
@@ -49,7 +56,7 @@ public class PlayerController : MonoBehaviour
         {
             transform.Translate(speed * Time.deltaTime,0,0);
         }*/
-        Vector3 moveInput = new Vector3(0,0,0);
+        Vector3 moveInput = new Vector3(0,0,0);  //-----Vector3
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
@@ -58,11 +65,8 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(moveInput.x,1,1);
         }
         moveInput.Normalize();
-        transform.position += speed* moveInput * Time.deltaTime;
         
-        
-        
-        if(moveInput != Vector3.zero)
+        if(moveInput != Vector3.zero)//-------Vector3
         {
             anim.SetBool("isMoving", true);
 
@@ -70,8 +74,40 @@ public class PlayerController : MonoBehaviour
         { 
             anim.SetBool("isMoving", false);
         }
+        if(rightCollider == true)
+        {
+            if(moveInput.x >0)
+            {
+                moveInput.x = 0;
+            }
+        }
+        if(leftCollider == true)
+        {
+            if(moveInput.x <0)
+            {
+                moveInput.x = 0;
+            }
+        }if(topCollider == true)
+        {
+            if(moveInput.y >0)
+            {
+                moveInput.y = 0;
+            }
+        }if(bottomCollider == true)
+        {
+            if(moveInput.y <0)
+            {
+                moveInput.y = 0;
+            }
+        }
+        transform.position += speed* moveInput * Time.deltaTime;
+        //Vector3 newPosition = rb.position + speed * moveInput * Time.deltaTime;
+        //rb.MovePosition(newPosition);
+      
+        
         
     }
+    
     public void AddWeapon(int weaponNumber)
     {
         if(weaponNumber < unassignedWeapons.Count)

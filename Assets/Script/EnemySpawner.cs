@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyToSpawn;
     private float spawnCounter;
     public float spawnTime;
-    public Transform minSpawn, maxSpawn;
+    public Transform minSpawn, maxSpawn, mapMin, mapMax;
     private Transform target;
     private List<GameObject> spawnedEnemies = new List<GameObject>();
     public List<WaveInfo> waves;
@@ -20,7 +20,8 @@ public class EnemySpawner : MonoBehaviour
         target = PlayerHealthController.instance.transform;
         currentWave = -1;
         GoToNextWave();
-        Debug.Log(waves.Count);
+        
+        
         
     }
 
@@ -83,6 +84,22 @@ public class EnemySpawner : MonoBehaviour
                 spawnPoint.y = maxSpawn.position.y;
             }
 
+        }
+        if(minSpawn.position.x < mapMin.position.x && spawnPoint.x < mapMin.position.x)
+        {
+            spawnPoint.x = 2 * target.position.x - spawnPoint.x;
+        }
+        if(minSpawn.position.y < mapMin.position.y && spawnPoint.y < mapMin.position.y)
+        {
+            spawnPoint.y = 2 * target.position.y - spawnPoint.y;
+        }
+        if(maxSpawn.position.x > mapMax.position.x && spawnPoint.x > mapMax.position.x)
+        {
+            spawnPoint.x = 2 * target.position.x - spawnPoint.x;
+        }
+        if(maxSpawn.position.y > mapMax.position.y && spawnPoint.y > mapMax.position.y)
+        {
+            spawnPoint.y = 2 * target.position.y - spawnPoint.y;
         }
 
         return spawnPoint;

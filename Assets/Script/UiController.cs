@@ -18,6 +18,8 @@ public class UiController : MonoBehaviour
     public TMP_Text timeText;
     public GameObject levelEndScreen;
     public TMP_Text survivedTimeText;
+    public string mainMenuName;
+    public GameObject pauseScreen;
    
     private float maxExp;
     public LevelUpSelectionBotton[] levelUpBottons;
@@ -26,6 +28,13 @@ public class UiController : MonoBehaviour
     void Start()
     {
         expSlider.value = 0.0f;
+        
+    }
+    void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseUnpause();
+        }
         
     }
     
@@ -78,10 +87,32 @@ public class UiController : MonoBehaviour
      }
     public void GoToMenu()
     {
+        SceneManager.LoadScene(mainMenuName);
+        Time.timeScale = 1f;
 
     }
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1f;
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    public void PauseUnpause()
+    {
+        if(pauseScreen.activeSelf == false)
+        {
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }else
+        {
+            pauseScreen.SetActive(false);
+            if(levelUpPanel.activeSelf == false)
+            {
+            Time.timeScale = 1f;
+            }
+        }
     }
 }
