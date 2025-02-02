@@ -90,6 +90,7 @@ public class EnemyController : MonoBehaviour
         {
             CoinController.instance.DropCoin(transform.position, coinValue);
         }
+        ItemController.instance.DropItem(ItemController.instance.magnet, transform.position);
        }
        DamageNumberController.instance.SpawnDamage(damage, transform.position);
 

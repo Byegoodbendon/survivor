@@ -12,6 +12,9 @@ public class PlayerHealthController : MonoBehaviour
     public static PlayerHealthController instance;
     public float currentHealth, maxHealth;
     public Slider healthSlider;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public float flashDuration = 0.15f;
     //public Gradient gradient;
     
     public GameObject playerDeathEffect;
@@ -27,6 +30,8 @@ public class PlayerHealthController : MonoBehaviour
         healthSlider.maxValue = maxHealth;
         
         healthSlider.value = currentHealth;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        originalColor = spriteRenderer.color;
         //fill.color = gradient.Evaluate(1f);
     }
 
@@ -35,11 +40,24 @@ public class PlayerHealthController : MonoBehaviour
     {
        
     }
+    public void TakeDamageEffect()
+    {
+        StartCoroutine(FlashRed());
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = new Color(1f, 0.5f, 0.5f, 1f); // 变红
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor; // 恢复原始颜色
+    }
 
     public void GetHeart(float damage)
     {
         currentHealth -= damage;
         healthSlider.value = currentHealth;
+        TakeDamageEffect();
+
         //fill.color = gradient.Evaluate(healthSlider.normalizedValue);
         
         if(currentHealth <= 0)
@@ -48,5 +66,14 @@ public class PlayerHealthController : MonoBehaviour
             LevelManager.instance.EndLevel();
             Instantiate(playerDeathEffect,transform.position,transform.rotation);
         }
+    }
+    public void GetHeal(float healingAmount)
+    {
+        currentHealth += healingAmount;
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        healthSlider.value = currentHealth;
     }
 }
