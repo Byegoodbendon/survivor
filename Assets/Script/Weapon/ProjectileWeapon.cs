@@ -20,29 +20,33 @@ public class ProjectileWeapon : Weapon
     // Update is called once per frame
     void Update()
     {
-        if(stateUpdated == true)
+        if(PlayerHealthController.instance.gameObject.activeSelf == true)
         {
-            stateUpdated = false;
-            SetState();
-        }
-        shootCounter -= Time.deltaTime;
-        if(shootCounter <= 0)
-        {
-            shootCounter = state[weaponLevel].timeBetweenAttacks;
-            Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, weaponRange * state[weaponLevel].range, whatIsEnemy); 
-            if(enemies.Length > 0)
-            {
-                for(int i = 0; i < state[weaponLevel].amount; i++)
-                {
-                    /*Vector3 direction = enemies[i].transform.position - transform.position;
-                    Instantiate(projectile, transform.position, direction)*/
-                    Vector3 targetPosition = enemies[UnityEngine.Random.Range(0,enemies.Length)].transform.position;
-                    Vector3 direction = targetPosition - transform.position;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    angle -= 90;
-                    projectile.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
-                    Instantiate(projectile, transform.position, projectile.transform.rotation).gameObject.SetActive(true);
 
+            if(stateUpdated == true)
+            {
+                stateUpdated = false;
+                SetState();
+            }
+            shootCounter -= Time.deltaTime;
+            if(shootCounter <= 0)
+            {
+                shootCounter = state[weaponLevel].timeBetweenAttacks;
+                Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, weaponRange * state[weaponLevel].range, whatIsEnemy); 
+                if(enemies.Length > 0)
+                {
+                    for(int i = 0; i < state[weaponLevel].amount; i++)
+                    {
+                        /*Vector3 direction = enemies[i].transform.position - transform.position;
+                        Instantiate(projectile, transform.position, direction)*/
+                        Vector3 targetPosition = enemies[UnityEngine.Random.Range(0,enemies.Length)].transform.position;
+                        Vector3 direction = targetPosition - transform.position;
+                        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                        angle -= 90;
+                        projectile.transform.rotation = Quaternion.AngleAxis(angle,Vector3.forward);
+                        Instantiate(projectile, transform.position, projectile.transform.rotation).gameObject.SetActive(true);
+
+                    }
                 }
             }
         }

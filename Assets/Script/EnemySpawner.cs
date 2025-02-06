@@ -13,6 +13,8 @@ public class EnemySpawner : MonoBehaviour
     public List<WaveInfo> waves;
     private int currentWave;
     private float waveCount;
+    private float randomX;
+    private float randomY;
 
     void Start()
     {
@@ -38,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
         }*/
         transform.position = target.position;
 
-        if(PlayerHealthController.instance.gameObject.activeSelf)
+        if(PlayerHealthController.instance.gameObject.activeSelf == true)
         {
             if(currentWave < waves.Count)
             {
@@ -63,10 +65,24 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 spawnPoint = Vector3.zero;
         bool spawnVerticalEdge = Random.Range(0f,1f)>0.5f;
+        if(PlayerController.instance.transform.localScale.x > 0)
+        {
+            randomX = 0.9f ;
+        }else
+        {
+            randomX = 0.1f;
+        }
+        if(PlayerController.instance.transform.localScale.y > 0)
+        {
+            randomY = 0.9f ;
+        }else
+        {
+            randomY = 0.1f;
+        }
         if(spawnVerticalEdge)
         {
             spawnPoint.y = Random.Range(minSpawn.position.y,maxSpawn.position.y);
-            if(Random.Range(0f,1f) > 0.5f)
+            if(Random.Range(0f,1f) > randomX)
             {
                 spawnPoint.x = minSpawn.position.x ;
             }else
@@ -76,7 +92,7 @@ public class EnemySpawner : MonoBehaviour
         }else
         {
             spawnPoint.x = Random.Range(minSpawn.position.x,maxSpawn.position.x);
-            if(Random.Range(0f,1f) > 0.5f)
+            if(Random.Range(0f,1f) > randomY)
             {
                 spawnPoint.y = minSpawn.position.y ;
             }else
@@ -113,7 +129,7 @@ public class EnemySpawner : MonoBehaviour
         {
             currentWave = waves.Count-1;
         }
-        waveCount = waves[currentWave].waveLength;
+        waveCount = waves[currentWave].waveTime;
         spawnCounter = waves[currentWave].timeBetweenSpawn;
 
     }
@@ -123,6 +139,6 @@ public class EnemySpawner : MonoBehaviour
 public class WaveInfo
 {
     public GameObject enemyToSpawn;
-    public float waveLength;
+    public float waveTime;
     public float timeBetweenSpawn;
 }

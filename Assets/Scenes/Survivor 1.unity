@@ -748,6 +748,7 @@ MonoBehaviour:
   survivedTimeText: {fileID: 362119553}
   mainMenuName: Main Menu
   pauseScreen: {fileID: 245552224}
+  sliderSpeed: 0
   levelUpBottons:
   - {fileID: 2024776775}
   - {fileID: 1414189194}
@@ -788,9 +789,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed:
   - cost: 0
-    value: 4
+    value: 3
   - cost: 5
-    value: 5.1
+    value: 3.1
   pickupRange:
   - cost: 0
     value: 1.3
@@ -803,7 +804,7 @@ MonoBehaviour:
     value: 55
   maxWeapons:
   - cost: 0
-    value: 2
+    value: 3
   - cost: 500
     value: 4
   - cost: 1000
@@ -16961,13 +16962,16 @@ MonoBehaviour:
   mapMax: {fileID: 897333554}
   waves:
   - enemyToSpawn: {fileID: 3193567318898588582, guid: 6e87bde960a1c45488ea388a639bfd30, type: 3}
-    waveLength: 50
+    waveTime: 20
     timeBetweenSpawn: 0.2
   - enemyToSpawn: {fileID: 5047423041477558479, guid: 3b63b00a8a8f5ae4c859c5a82d7bbb4a, type: 3}
-    waveLength: 5
-    timeBetweenSpawn: 0.5
+    waveTime: 5
+    timeBetweenSpawn: 0.1
   - enemyToSpawn: {fileID: 6386603814376343161, guid: 41ffadb900a2c2244bd703b0389848b6, type: 3}
-    waveLength: 1
+    waveTime: 20
+    timeBetweenSpawn: 0.5
+  - enemyToSpawn: {fileID: 3193567318898588582, guid: 6e87bde960a1c45488ea388a639bfd30, type: 3}
+    waveTime: 10
     timeBetweenSpawn: 0.5
 --- !u!4 &451581288
 Transform:
@@ -18376,7 +18380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exp: {fileID: 7774228320505815308, guid: 92338bc2399bea14ebb7010d81895888, type: 3}
-  expLevels: 0200000004000000060000000a0000000a000000
+  expLevels: 020000000a0000000f000000140000001e00000028000000320000004600000064000000
   currentLevel: 1
   levelCount: 6
   weaponsToUpgrade: []
@@ -21367,14 +21371,14 @@ MonoBehaviour:
   weaponLevel: 0
   state:
   - speed: 1
-    damage: 5
+    damage: 3
     range: 1
     timeBetweenAttacks: 3
     amount: 1
     duration: 5
     upgradeText: Rotate Speed UP
   - speed: 1
-    damage: 5
+    damage: 3
     range: 1
     timeBetweenAttacks: 3
     amount: 3
@@ -22198,35 +22202,35 @@ MonoBehaviour:
   weaponLevel: 0
   state:
   - speed: 7
-    damage: 3
+    damage: 2
     range: 1
     timeBetweenAttacks: 1.5
     amount: 2
     duration: 2
     upgradeText: damage+2
   - speed: 7
-    damage: 5
+    damage: 3
     range: 1
     timeBetweenAttacks: 1.5
     amount: 2
     duration: 2
     upgradeText: target+1
   - speed: 7
-    damage: 5
+    damage: 3
     range: 1
     timeBetweenAttacks: 0.5
     amount: 3
     duration: 2
     upgradeText: frequency up
   - speed: 10
-    damage: 5
+    damage: 3
     range: 5
     timeBetweenAttacks: 0.5
     amount: 3
     duration: 2
     upgradeText: speed up
   - speed: 10
-    damage: 5
+    damage: 3
     range: 5
     timeBetweenAttacks: 0.5
     amount: 3
@@ -22310,8 +22314,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1475050083
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1f268b33cadc6104287b8111b824e1e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22714,7 +22718,7 @@ Transform:
   m_GameObject: {fileID: 1408511157}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.7, y: 7.9, z: 0}
+  m_LocalPosition: {x: 11, y: 6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23188,6 +23192,7 @@ MonoBehaviour:
   - {fileID: 1602648887}
   assignedWeapons: []
   maxWeapons: 3
+  isMagnetActive: 0
   fullyLevelledWeapons: []
 --- !u!212 &1500007390
 SpriteRenderer:
@@ -23230,7 +23235,7 @@ SpriteRenderer:
   m_SortingLayerID: -1152503593
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: -6367560908665664636, guid: 3750f45c844123341b9a777a96cb1eca, type: 3}
+  m_Sprite: {fileID: -1139878824, guid: 1d45e85538073a5409bb150657130fc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -23294,7 +23299,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.01, y: -0.05}
   serializedVersion: 2
-  m_Radius: 0.41
+  m_Radius: 0.3
 --- !u!95 &1500007394
 Animator:
   serializedVersion: 5
@@ -24434,7 +24439,7 @@ Transform:
   m_GameObject: {fileID: 1696616165}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -13.9, y: -9.7, z: 0}
+  m_LocalPosition: {x: -11, y: -6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27517,28 +27522,28 @@ MonoBehaviour:
   weaponLevel: 0
   state:
   - speed: 10
-    damage: 5
+    damage: 3
     range: 0
     timeBetweenAttacks: 3.5
     amount: 1
     duration: 2
     upgradeText: power up
   - speed: 10
-    damage: 7
+    damage: 3
     range: 0
     timeBetweenAttacks: 3.5
     amount: 1
     duration: 2
     upgradeText: range up
   - speed: 10
-    damage: 7
+    damage: 3
     range: 0.4
     timeBetweenAttacks: 3.5
     amount: 2
     duration: 2
     upgradeText: amount +1
   - speed: 10
-    damage: 7
+    damage: 3
     range: 0.4
     timeBetweenAttacks: 3.5
     amount: 4

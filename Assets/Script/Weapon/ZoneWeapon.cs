@@ -18,30 +18,33 @@ public class ZoneWeapon : Weapon
     // Update is called once per frame
     void Update()
     {
-        if(stateUpdated == true)
+        if(PlayerHealthController.instance.gameObject.activeSelf == true)
         {
-            stateUpdated = false;
-            SetState();
-        }
-        if(zoneWeapon.activeInHierarchy == false)
-        {
-            spawnCounter += Time.deltaTime;
-            if(spawnCounter >= spawnTime)
+            if(stateUpdated == true)
             {
-                zoneWeapon.SetActive(true);
-               // transform.gameObject.SetActive(true);
-                
-                spawnCounter = 0;
+                stateUpdated = false;
+                SetState();
             }
-            
-        }
-        /*spawnCounter -= Time.deltaTime;
-        if(spawnCounter <= 0f)
-        {
-            spawnCounter = spawnTime;
-            Instantiate(damager,damager.transform.position,quaternion.identity,transform).gameObject.SetActive(true);
+            if(zoneWeapon.activeInHierarchy == false)
+            {
+                spawnCounter += Time.deltaTime;
+                if(spawnCounter >= spawnTime)
+                {
+                    zoneWeapon.SetActive(true);
+                // transform.gameObject.SetActive(true);
+                    
+                    spawnCounter = 0;
+                }
+                
+            }
+            /*spawnCounter -= Time.deltaTime;
+            if(spawnCounter <= 0f)
+            {
+                spawnCounter = spawnTime;
+                Instantiate(damager,damager.transform.position,quaternion.identity,transform).gameObject.SetActive(true);
 
-        }*/
+            }*/
+        }
         
     }
     void SetState()

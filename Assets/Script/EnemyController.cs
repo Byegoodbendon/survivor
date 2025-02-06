@@ -16,13 +16,20 @@ public class EnemyController : MonoBehaviour
     public float knockBackTime = 0.5f;
     private float knockBackCount;
     public int expToGive;
-    public float coinDropRate = 0.5f;
+    public float coinDropRate = 0.1f;
+    public float magnetDropRate = 0.1f;
     public int coinValue = 1;
+    private SpriteRenderer spriteRenderer;
+    private Color originalColor;
+    public float flashDuration = 0.15f;
     void Start()
     {
-       //target = FindObjectOfType<PlayerController>().transform;
+       
        target= PlayerHealthController.instance.transform;
        moveSpeed = moveSpeed * UnityEngine.Random.Range(0.75f,1.25f);
+       spriteRenderer = GetComponent<SpriteRenderer>();
+       originalColor = spriteRenderer.color;
+    
         
     }
 
@@ -82,15 +89,11 @@ public class EnemyController : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        TakeDamageEffect();
         if(health <= 0)
        {
-        Destroy(gameObject);
-        ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
-        if(UnityEngine.Random.value <= coinDropRate)
-        {
-            CoinController.instance.DropCoin(transform.position, coinValue);
-        }
-        ItemController.instance.DropItem(ItemController.instance.magnet, transform.position);
+        StartCoroutine(Die());
+        
        }
        DamageNumberController.instance.SpawnDamage(damage, transform.position);
 
@@ -102,5 +105,42 @@ public class EnemyController : MonoBehaviour
         {
             knockBackCount = knockBackTime;
         }
+    }
+    public void TakeDamageEffect()
+    {
+        StartCoroutine(FlashRed());
+    }
+
+    private IEnumerator FlashRed()
+    {
+        spriteRenderer.color = new Color(1f, 0.5f, 0.5f, 1f); // 变红
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = originalColor; // 恢复原始颜色
+    }
+    private IEnumerator Die()
+    {
+        eneyAnim.SetBool("dead",true);
+        enemyRB.velocity = Vector2.zero;
+        enemyRB.bodyType = RigidbodyType2D.Static;
+        GetComponent<Collider2D>().enabled = false;
+        for(float i = 1f;  i > 0; i -=0.1f)
+        {
+            spriteRenderer.color = new Color(1f,1f,1f,i);
+            yield return new WaitForSeconds(0.06f);
+        }
+        
+        
+        
+        ExperienceLevelController.instance.SpawnExp(transform.position, expToGive);
+        if(UnityEngine.Random.value <= coinDropRate)
+        {
+            CoinController.instance.DropCoin(transform.position, coinValue);
+        }
+        if(UnityEngine.Random.value <= magnetDropRate)
+        {
+            ItemController.instance.DropItem(ItemController.instance.magnet, transform.position);
+        }
+        yield return new WaitForSeconds(0.2f);
+        Destroy(gameObject);
     }
 }

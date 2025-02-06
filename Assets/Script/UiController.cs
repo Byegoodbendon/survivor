@@ -20,6 +20,7 @@ public class UiController : MonoBehaviour
     public TMP_Text survivedTimeText;
     public string mainMenuName;
     public GameObject pauseScreen;
+    public float sliderSpeed = 1.0f; //經驗值增加的速度
    
     private float maxExp;
     public LevelUpSelectionBotton[] levelUpBottons;
@@ -40,11 +41,29 @@ public class UiController : MonoBehaviour
     
     public void UpdateExperience(int currentExp, int levelExp, int currentLevel)
     {
+        //StopAllCoroutines();
+        //StartCoroutine(SmoothChange(currentExp));
+
         expSlider.value = currentExp;
         expSlider.maxValue = levelExp;
         LvlText.text = "Level " + currentLevel;
 
     }
+     /*private IEnumerator SmoothChange(float targetValue)
+    {
+        float startValue = expSlider.value;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < sliderSpeed)
+        {
+            elapsedTime += Time.deltaTime;
+            expSlider.value = Mathf.Lerp(startValue, targetValue, elapsedTime / sliderSpeed);
+            yield return null;
+            Debug.Log("fff");
+        }
+        
+        expSlider.value = targetValue; // 确保最终值正确
+    }*/
     public void SkipLevelUp()
     {
         levelUpPanel.SetActive(false);

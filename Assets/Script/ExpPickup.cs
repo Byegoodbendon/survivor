@@ -44,7 +44,7 @@ public class ExpPickup : MonoBehaviour
     }
     private IEnumerator DelayMove()
     {
-        yield return new WaitForSeconds(1f); // 等待 1 秒
+        yield return new WaitForSeconds(0.5f); 
         canMove = true; // 允許移動
     }
 }

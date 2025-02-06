@@ -103,9 +103,13 @@ MonoBehaviour:
   enemyRB: {fileID: 3637590553529394940}
   eneyAnim: {fileID: 3867655294319139268}
   moveSpeed: 1
-  health: 15
+  health: 12
   knockBackTime: 0.3
   expToGive: 3
+  coinDropRate: 0.5
+  magnetDropRate: 0.1
+  coinValue: 1
+  flashDuration: 0.15
 --- !u!95 &3867655294319139268
 Animator:
   serializedVersion: 5

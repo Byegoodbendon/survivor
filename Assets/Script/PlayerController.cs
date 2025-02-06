@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     //public Weapon activeWeapon;
     public List<Weapon> unassignedWeapons, assignedWeapons;
     public int maxWeapons = 3;
+    public bool isMagnetActive;
     
     private Rigidbody2D rb;
     [HideInInspector]
@@ -133,6 +134,24 @@ public class PlayerController : MonoBehaviour
             assignedWeapons.Remove(usingWeapon);
         }
     }*/
+    public void ActivateMagnetEffect(float rangeIncrease, float duration)
+    {
+        if (!isMagnetActive)  // 确保不会重复叠加
+        {
+            StartCoroutine(MagnetEffectCoroutine(rangeIncrease, duration));
+        }
+    }
+
+private IEnumerator MagnetEffectCoroutine(float rangeIncrease, float duration)
+{
+    isMagnetActive = true;
+    pickupRange.radius += rangeIncrease;
+    
+    yield return new WaitForSeconds(duration);
+    
+    pickupRange.radius -= rangeIncrease;
+    isMagnetActive = false;
+}
 
 }
     

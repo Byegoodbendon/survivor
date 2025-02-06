@@ -102,10 +102,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRB: {fileID: 3922399923196823772}
   eneyAnim: {fileID: 3738995383097350037}
-  moveSpeed: 3
+  moveSpeed: 1.5
   health: 5
   knockBackTime: 0.3
   expToGive: 1
+  coinDropRate: 0.5
+  coinValue: 1
+  flashDuration: 0.15
 --- !u!95 &3738995383097350037
 Animator:
   serializedVersion: 5
